@@ -34,4 +34,14 @@ app.post('/api/contact', async (req, res) => {
     }
 });
 
+// New route to fetch all registered users
+app.get('/api/contacts', async (req, res) => {
+    try {
+        const contacts = await Contact.find();
+        res.status(200).json(contacts);
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+});
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
